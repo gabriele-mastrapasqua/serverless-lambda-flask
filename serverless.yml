@@ -9,11 +9,15 @@ plugins:
   - serverless-wsgi
   - serverless-python-requirements
 custom:
+ pythonRequirements:
+   layer: true
  wsgi:
    app: app.app
    packRequirements: false
 functions:
  app:
    handler: wsgi_handler.handler
+   layers:
+     - Ref: PythonRequirementsLambdaLayer
    events:
      - httpApi: '*'
