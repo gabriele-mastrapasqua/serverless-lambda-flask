@@ -74,6 +74,14 @@ export AWS_SECRET_ACCESS_KEY=<your-secret-key-here>
 sls deploy
 ```
 
+or in windows: 
+```
+SET AWS_ACCESS_KEY_ID=<your-key-here>
+SET AWS_SECRET_ACCESS_KEY=<your-secret-key-here>
+sls deploy
+```
+
+
 after some seconds it should prints an AWS api gateway url like this:
 
 https://XXXXXXX.execute-api.us-east-1.amazonaws.com/
