@@ -1,10 +1,11 @@
-service: hello-world-lambda
+service: test-lambda-url
  
 provider:
  name: aws
  runtime: python3.9
  region: us-east-1
- memorySize: 128
+ memorySize: 512
+ timeout: 90
 plugins:
   - serverless-wsgi
   - serverless-python-requirements
@@ -19,5 +20,13 @@ functions:
    handler: wsgi_handler.handler
    layers:
      - Ref: PythonRequirementsLambdaLayer
-   events:
-     - httpApi: '*'
+   
+   # 1 - Enable direct Lambda Function URL, this can bypass API Gateway 30s timeout
+   url:
+     # Allow CORS for all requests from any origin
+     cors: true
+
+   # 2 - Enable lambda through API Gateway HTTP API. Note, using API Gateway will force a 30s max timeout
+   # on all endpoints
+   #events:
+   #  - httpApi: '*'

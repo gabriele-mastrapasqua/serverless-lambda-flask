@@ -58,6 +58,30 @@ Change service name 'hello-world-lambda' in serverless.yml file with a new name.
 python app.py
 ```
 
+## Using Lambda custom url for direct access the lambda without api gateway
+Using this new functionality will remove the max timeout of 30s from API Gateway.
+If you want instead use an API GW, comment those lines and uncomment the lines above in serverless.yml.
+
+```
+# 1 - Enable direct Lambda Function URL, this can bypass API Gateway 30s timeout
+   url:
+     # Allow CORS for all requests from any origin
+     cors: true
+```
+
+See also: https://www.serverless.com/blog/aws-lambda-function-urls-with-serverless-framework#:~:text=Unlike%20API%20Gateway%2C%20Function%20URLs,(up%20to%2015%20minutes).
+
+## Using Lambda through an api gateway
+This will have max 30s timeout and more configuration options available.
+Uncomment those lines in serverless.yml:
+
+```
+# 2 - Enable lambda through API Gateway HTTP API. Note, using API Gateway will force a 30s max timeout
+   # on all endpoints
+   #events:
+   #  - httpApi: '*'
+```
+
 ## test sample endpoints 
 
 ```
